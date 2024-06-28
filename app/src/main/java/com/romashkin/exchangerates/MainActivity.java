@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -47,8 +49,17 @@ public class MainActivity extends AppCompatActivity {
     //Метод для парсинга сайта
     private void parseWeb(){
         try {
+            //Парсим сайт ЦБ
             document = Jsoup.connect("https://www.cbr.ru/currency_base/daily/").get();
             Log.d("MyLog", "Title : " + document.title());
+            //Достаем оттуда таблицу
+            Element table = document.select("table.data").first();
+            //Проверка на наличие таблицы
+            if (table != null) {
+                //Получаем строки с таблицы
+                Elements rows = table.select("tr");
+                Log.d("MyLog", "Таблица");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
