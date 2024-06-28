@@ -1,6 +1,8 @@
 package com.romashkin.exchangerates;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +10,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+    private Document document;
+    private Thread secondThread;
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +30,27 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        init();
+    }
+    //Создаем поток для парсинга валют с сайта
+    private void init(){
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                parseWeb();
+            }
+        };
+        secondThread = new Thread(runnable);
+        secondThread.start();
+    }
+
+    //Метод для парсинга сайта
+    private void parseWeb(){
+        try {
+            document = Jsoup.connect("https://www.cbr.ru/currency_base/daily/").get();
+            Log.d("MyLog", "Title : " + document.title());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
