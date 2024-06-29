@@ -59,9 +59,17 @@ public class MainActivity extends AppCompatActivity {
             if (table != null) {
                 //Получаем строки с таблицы
                 Elements rows = table.select("tr");
-                //Получаем колонки
-                Elements columns = table.select("td");
-                Log.i("MyLog", "Таблица");
+                //Перебериаем строки таблицы
+                for (Element row : rows){
+                    //Получаем колонки
+                    Elements columns = row.select("td");
+                    if (columns.size() == 6) {
+                        String currencyName = columns.get(2).text();
+                        String rate = columns.get(4).text();
+                        String course = columns.get(5).text();
+                        Log.i("MyLog", "Валюта : " + currencyName);
+                    }
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
