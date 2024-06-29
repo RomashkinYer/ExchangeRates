@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //Вызываем парсинг во втором потоке
         init();
     }
     //Создаем поток для парсинга валют с сайта
