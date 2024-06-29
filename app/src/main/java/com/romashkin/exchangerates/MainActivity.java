@@ -52,14 +52,16 @@ public class MainActivity extends AppCompatActivity {
         try {
             //Парсим сайт ЦБ
             document = Jsoup.connect("https://www.cbr.ru/currency_base/daily/").get();
-            Log.d("MyLog", "Title : " + document.title());
+            Log.i("MyLog", "Title : " + document.title());
             //Достаем оттуда таблицу
             Element table = document.select("table.data").first();
             //Проверка на наличие таблицы
             if (table != null) {
                 //Получаем строки с таблицы
                 Elements rows = table.select("tr");
-                Log.d("MyLog", "Таблица");
+                //Получаем колонки
+                Elements columns = table.select("td");
+                Log.i("MyLog", "Таблица");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
