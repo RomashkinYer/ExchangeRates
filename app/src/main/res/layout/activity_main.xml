@@ -19,14 +19,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/listBacckground">
 
             <ListView
                 android:id="@+id/mainList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/list_item" />
+                android:layout_height="wrap_content" />
+<!--                tools:listitem="@layout/list_item" -->
+
         </LinearLayout>
     </ScrollView>
 
