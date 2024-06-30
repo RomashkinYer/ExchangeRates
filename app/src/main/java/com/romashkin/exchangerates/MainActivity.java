@@ -16,13 +16,19 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Document document;
     private Thread secondThread;
     private Runnable runnable;
-
-    @Override
+    public ArrayList<String> nameCurrency, countryCode, currency;
+    public int flagImages [] = {R.drawable.australia, R.drawable.azeibardzan, R.drawable.armenia, R.drawable.belarus, R.drawable.bolgaria, R.drawable.brazil,
+            R.drawable.hungary, R.drawable.southkorea, R.drawable.vietnam, R.drawable.hongkong, R.drawable.georgia, R.drawable.denmark, R.drawable.uae, R.drawable.usa,
+            R.drawable.euro, R.drawable.egypt, R.drawable.india, R.drawable.indonesia, R.drawable.kazakhstan, R.drawable.canada, R.drawable.quatar, R.drawable.kyrgyzstan,
+            R.drawable.china, R.drawable.moldova, R.drawable.newzeland, R.drawable.turkmenistan, R.drawable.norway, R.drawable.poland, R.drawable.romania,
+            R.drawable.cdr, R.drawable.serbia, R.drawable.singapore, R.drawable.tajilistan, R.drawable.thailand, R.drawable.turkey, R.drawable.uzbekistan,
+            R.drawable.ukraine, R.drawable.unitedkingdom, R.drawable.czechia, R.drawable.sweden, R.drawable.switzerland, R.drawable.southafrica, R.drawable.japan};
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
